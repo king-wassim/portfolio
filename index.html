@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Wassim | Engineering Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#a7c8ff",
+                        "surface-container-lowest": "#000e23",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#2f486a",
+                        "outline-variant": "#414753",
+                        "surface-tint": "#a7c8ff",
+                        "on-surface-variant": "#c1c6d5",
+                        "inverse-surface": "#d4e3ff",
+                        "on-primary-fixed-variant": "#004788",
+                        "background": "#00142b",
+                        "inverse-primary": "#005eb2",
+                        "on-secondary": "#163152",
+                        "secondary": "#afc8f0",
+                        "on-tertiary-fixed-variant": "#00531d",
+                        "error": "#ffb4ab",
+                        "surface": "#00142b",
+                        "secondary-fixed": "#d4e3ff",
+                        "tertiary": "#3ce368",
+                        "on-primary-fixed": "#001b3b",
+                        "surface-variant": "#1b3656",
+                        "tertiary-fixed-dim": "#3ce368",
+                        "primary-fixed": "#d5e3ff",
+                        "on-tertiary": "#003911",
+                        "primary": "#a7c8ff",
+                        "surface-container-highest": "#1b3656",
+                        "on-primary-container": "#fdfbff",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "inverse-on-surface": "#163152",
+                        "tertiary-container": "#008734",
+                        "surface-bright": "#203a5b",
+                        "secondary-container": "#2f486a",
+                        "secondary-fixed-dim": "#afc8f0",
+                        "on-secondary-fixed": "#001c3a",
+                        "on-surface": "#d4e3ff",
+                        "on-primary": "#003060",
+                        "surface-container": "#012040",
+                        "surface-container-high": "#0e2b4b",
+                        "on-secondary-container": "#9eb7de",
+                        "outline": "#8b919e",
+                        "on-tertiary-fixed": "#002107",
+                        "tertiary-fixed": "#6aff86",
+                        "on-background": "#d4e3ff",
+                        "primary-container": "#0074d9",
+                        "surface-container-low": "#001c3a",
+                        "on-tertiary-container": "#f7fff2",
+                        "surface-dim": "#00142b"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(circle, #1b3656 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .blueprint-border {
+            border-left: 1px solid rgba(167, 200, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface font-body selection:bg-tertiary selection:text-on-tertiary">
+    <!-- TopNavBar -->
+    <nav class="bg-[#00142b]/70 backdrop-blur-md fixed top-0 w-full z-50">
+        <div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
+            <a class="text-2xl font-black text-[#0074d9] hover:text-[#a7c8ff] transition-colors font-['Space_Grotesk'] tracking-tight"
+                href="#">W</a>
+            <div class="hidden md:flex gap-8 items-center">
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#a7c8ff] border-b-2 border-[#3ce368] pb-1"
+                    href="#home">Home</a>
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-all"
+                    href="#about">About</a>
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-all"
+                    href="#skills">Skills</a>
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-all"
+                    href="#projects">Projects</a>
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-all"
+                    href="#contact">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex gap-2">
+                    <a class="p-2 text-outline hover:text-primary transition-colors" href="#">
+                        <span class="material-symbols-outlined" data-icon="code">code</span>
+                    </a>
+                    <a class="p-2 text-outline hover:text-primary transition-colors" href="#">
+                        <span class="material-symbols-outlined" data-icon="link">link</span>
+                    </a>
+                </div>
+                <button
+                    class="bg-primary-container text-on-primary-container px-6 py-2 rounded-xl font-bold scale-95 active:scale-90 transition-transform">Hire
+                    Me</button>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative min-h-[921px] flex flex-col justify-center overflow-hidden px-8" id="home">
+            <div class="absolute inset-0 z-0 opacity-20">
+                <img class="w-full h-full object-cover"
+                    data-alt="high-detail macro shot of a complex STM32 microcontroller circuit board with blue led glows and technical schematics in background"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ168fnQBcy-YTJ8-ICM-wR_8AO8qq09mqvEZbL0GGTyyCtpuQ4cpLPWvrU3ZcgYtsBSbIIhXjIOIHWXIUEiolmZvRZlLk4qSAdviGgY-gjISKzhtC3gZ9RwzS0o3NC8nO7wcWRddZYaAyiFrItwbwTzjXjAP7mKnWpQ2ZC2D47NE2C2AurxFP98EUt_TtObRbyec5CXs0Lq0dXlu2qBs2hgUBAr8N9nneL2cXRpW-TD6TgpqO5IOFTrwG3jfzabIlRpxBrpNBwGo" />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background z-10"></div>
+            <div class="max-w-7xl mx-auto w-full relative z-20 grid grid-cols-12 gap-6">
+                <div class="col-span-12 md:col-start-3 md:col-span-9">
+                    <span
+                        class="font-headline text-tertiary tracking-widest uppercase text-sm font-bold mb-4 block">Engineered
+                        for Precision</span>
+                    <h1 class="font-headline text-7xl md:text-9xl font-extrabold text-on-surface leading-tight mb-6">
+                        Wassim</h1>
+                    <p
+                        class="font-headline text-2xl md:text-3xl text-primary font-light mb-8 max-w-2xl leading-relaxed">
+                        1st Year Engineering Student | <span class="text-on-surface">Software &amp; Embedded Systems
+                            Developer</span>
+                    </p>
+                    <p class="text-outline text-lg mb-10 max-w-xl">
+                        From code to electronics: I transform ideas into concrete solutions. Specializing in
+                        high-performance firmware and robust software architecture.
+                    </p>
+                    <div class="flex flex-wrap gap-6">
+                        <a class="bg-primary-container text-on-primary-container px-8 py-4 rounded-xl font-bold flex items-center gap-3 hover:bg-primary transition-colors"
+                            href="#projects">
+                            Discover my projects
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+                        </a>
+                        <a class="border border-outline/30 text-primary px-8 py-4 rounded-xl font-bold hover:bg-surface-container-high transition-colors"
+                            href="#contact">
+                            Contact me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Me Section -->
+        <section class="py-24 px-8 bg-surface-container-low" id="about">
+            <div class="max-w-7xl mx-auto grid grid-cols-12 gap-12 items-center">
+                <div class="col-span-12 md:col-span-4 aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        alt="Wassim" src="image.jpg" />
+                </div>
+                <div class="col-span-12 md:col-span-8 blueprint-border pl-0 md:pl-12">
+                    <h2 class="font-headline text-4xl font-bold mb-8 flex items-center gap-4">
+                        <span class="material-symbols-outlined text-tertiary" data-icon="person">person</span>
+                        About Me
+                    </h2>
+                    <p class="text-xl text-on-surface-variant leading-relaxed mb-8">
+                        Motivated first-year engineering student, passionate about software development and embedded
+                        systems. I have already carried out several personal and academic projects with STM32 and
+                        various programming languages.
+                    </p>
+                    <p class="text-xl text-on-surface-variant leading-relaxed mb-12">
+                        Curious, rigorous and always ready to learn new technologies. My approach blends the technical
+                        rigor of engineering with the creative problem-solving of software development.
+                    </p>
+                    <div class="w-full">
+                        <h3
+                            class="font-headline text-lg font-bold text-tertiary mb-6 uppercase tracking-tighter flex items-center gap-3">
+                            <span class="material-symbols-outlined text-tertiary" data-icon="school">school</span>
+                            Education
+                        </h3>
+                        <div class="space-y-6">
+                            <!-- Engineering Cycle -->
+                            <div class="bg-surface-container-high p-8 rounded-2xl border-l-4 border-tertiary">
+                                <div
+                                    class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                    <div>
+                                        <p class="text-xl font-bold text-on-surface leading-tight mb-1">National
+                                            Institute of Applied Science and Technology (INSAT)</p>
+                                        <p class="text-primary text-sm font-medium mb-4 md:mb-0">Tunisia</p>
+                                    </div>
+                                    <div class="text-left md:text-right shrink-0">
+                                        <p class="text-outline font-bold md:text-sm">Sep 2025 – Present</p>
+                                        <p class="text-tertiary text-xs font-bold mt-1 uppercase tracking-wider">
+                                            Expected Graduation: 2028</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-outline/10">
+                                    <p class="text-on-surface flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-tertiary text-sm"
+                                            data-icon="chevron_right">chevron_right</span>
+                                        <strong class="text-on-surface">Engineering Cycle in Industrial IT and
+                                            Automation</strong>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Preparatory Cycle -->
+                            <div class="bg-surface-container-high p-8 rounded-2xl border-l-4 border-tertiary">
+                                <div
+                                    class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                    <div>
+                                        <p class="text-xl font-bold text-on-surface leading-tight mb-1">National
+                                            Institute of Applied Science and Technology (INSAT)</p>
+                                        <p class="text-primary text-sm font-medium mb-4 md:mb-0">Tunisia</p>
+                                    </div>
+                                    <div class="text-left md:text-right shrink-0">
+                                        <p class="text-outline font-bold md:text-sm">Sep 2023 – Jun 2025</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-outline/10">
+                                    <p class="text-on-surface flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-tertiary text-sm"
+                                            data-icon="chevron_right">chevron_right</span>
+                                        <strong class="text-on-surface">Preparatory Cycle in Mathematics, Physics, and
+                                            Industrial IT and Automation</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section -->
+        <section class="py-24 px-8 bg-background bg-grid-pattern" id="skills">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-12 mb-16">
+                    <div class="col-span-12 md:col-start-3">
+                        <h2 class="font-headline text-4xl font-bold mb-4">Technical Proficiency</h2>
+                        <div class="h-1 w-20 bg-tertiary"></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Programming -->
+                    <div
+                        class="bg-surface-container-low p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300">
+                        <span class="material-symbols-outlined text-tertiary text-4xl mb-6"
+                            data-icon="terminal">terminal</span>
+                        <h3 class="font-headline text-xl font-bold mb-6">Programming</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> C/C++
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Python
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> JavaScript
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Embedded Systems -->
+                    <div
+                        class="bg-surface-container-low p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300">
+                        <span class="material-symbols-outlined text-tertiary text-4xl mb-6"
+                            data-icon="memory">memory</span>
+                        <h3 class="font-headline text-xl font-bold mb-6">Embedded</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> STM32 (CubeIDE)
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> FreeRTOS
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> IoT
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Tools -->
+                    <div
+                        class="bg-surface-container-low p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300">
+                        <span class="material-symbols-outlined text-tertiary text-4xl mb-6"
+                            data-icon="construction">construction</span>
+                        <h3 class="font-headline text-xl font-bold mb-6">Tools</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Git &amp; GitHub
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Proteus
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> MATLAB
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Soft Skills -->
+                    <div
+                        class="bg-surface-container-low p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300">
+                        <span class="material-symbols-outlined text-tertiary text-4xl mb-6"
+                            data-icon="groups">groups</span>
+                        <h3 class="font-headline text-xl font-bold mb-6">Core</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Problem-solving
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Teamwork
+                            </span>
+                            <span
+                                class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Fast learning
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects Section -->
+        <section class="py-24 px-8" id="projects">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="mb-20">
+                    <h2 class="font-headline text-5xl font-black mb-4">Project Portfolio</h2>
+                    <p class="text-outline text-lg">A selection of my technical implementations across software and
+                        hardware.</p>
+                </div>
+                <!-- Software Projects -->
+                <div class="mb-24">
+                    <div class="flex items-center gap-4 mb-12">
+                        <span class="h-px flex-grow bg-outline/20"></span>
+                        <h3 class="font-headline text-2xl font-bold uppercase tracking-widest text-primary">Software
+                            Projects</h3>
+                        <span class="h-px flex-grow bg-outline/20"></span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <!-- Project 1 -->
+                        <div class="group">
+                            <div
+                                class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high">
+                                <div class="aspect-video relative overflow-hidden">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        data-alt="screenshot of a clean dark-themed software dashboard with syntax-highlighted code and data visualization charts"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0L-acHWO5S5p8rVLZH49ONfs_MaQ3XexIufYWK9TMkwFc5GVK259YEqj5Awb_XDDkevLEfyLESntRSMgycFjATSa5pW9BHxwCIgw02h78pf3HQoh_38s55nMRC8D-R8aGzv54FvgTT5MpGbTmxFYvZ32iwbCZ1DfqXjy7J6-zZ1zV1rLCOppU87HcsUogGbna8TRlOkFZbiU-PNJ8IoXJd013tk5nS3EVZsIeyq56bhpr1CviS20n0p0EtZre-7nKeSsoa0wvhZU" />
+                                </div>
+                                <div class="p-10">
+                                    <div class="flex gap-2 mb-6">
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Python</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">SQLite</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">Smart Inventory System</h4>
+                                    <p class="text-outline leading-relaxed mb-8">A desktop application developed to
+                                        manage complex stock inventories with real-time analytics and reporting
+                                        features.</p>
+                                    <div class="flex gap-6">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="#">
+                                            GitHub <span
+                                                class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform"
+                                                data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                        <a class="text-primary font-bold flex items-center gap-2 group/link" href="#">
+                                            Live Demo <span
+                                                class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform"
+                                                data-icon="visibility">visibility</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 2 -->
+                        <div class="group">
+                            <div
+                                class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high">
+                                <div class="aspect-video relative overflow-hidden">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        data-alt="web application interface showing real-time statistics and networking map on a deep blue nocturnal background"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGqyVQV3VFTOtvGaKZDl03-042zm5Ow2OwH-Uu3AoYHiYLQ0FkBz-svVvwsTDlUxG0tpFALiYRBpIM2XELNDKbqyR4vqrPVi81wqqxzadxiKtDBXoSmjAuCH3T-VhcrnbJEdCFeAGlCNIiEamSFXrsee2IqAabMa75nozsEY1INEXI0jaX4qNkMMdFV_NNPnKPUHggRudZIlhYSt5lNuR39eqIbIkeAGgpxp6l8dHyDv5hFGWE1Au-IQbwPhFCXXdj6fQJorjIMSU" />
+                                </div>
+                                <div class="p-10">
+                                    <div class="flex gap-2 mb-6">
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">JavaScript</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Node.js</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">Traffic Analyzer Hub</h4>
+                                    <p class="text-outline leading-relaxed mb-8">Web-based platform for monitoring local
+                                        network traffic patterns and visualizing data flow in real-time environments.
+                                    </p>
+                                    <div class="flex gap-6">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="#">
+                                            GitHub <span
+                                                class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform"
+                                                data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Embedded Projects -->
+                <div>
+                    <div class="flex items-center gap-4 mb-12">
+                        <span class="h-px flex-grow bg-outline/20"></span>
+                        <h3 class="font-headline text-2xl font-bold uppercase tracking-widest text-primary">Embedded
+                            STM32 Projects</h3>
+                        <span class="h-px flex-grow bg-outline/20"></span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <!-- Project 3 -->
+                        <div class="group">
+                            <div
+                                class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high">
+                                <div class="aspect-video relative overflow-hidden">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        data-alt="high-tech close up of an STM32 board with jumper wires connected to a small oled display and sensors"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA9m0AD3_OVbW9FnqZmLIqSs4Sg0IDJkKB0yDYguTXsWZSrebjON1cA-SbqUoJ1Xzu_P3OdIamO6i883lyReU2882OxsTaFPFsmx3nTy8cAaFeT4DfQk7AqfeEbsmgi5q6hxLtJJA0rsML5YaiwvKbNzsBSv-oC1ARZUilL3l3vTeSGuEvZadlPVMoIcTzdKF7sZHUFyMibho1sjJjGha_Wf1_hAwXfkKwHc2IhrzCwrEqH2NO5fB458p9WmmiF-U7jPfm6gvdk2s" />
+                                </div>
+                                <div class="p-10">
+                                    <div class="flex gap-2 mb-6">
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">STM32
+                                            HAL</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">FreeRTOS</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">RTOS Weather Station</h4>
+                                    <p class="text-outline leading-relaxed mb-8">Multi-threaded embedded system using
+                                        FreeRTOS to handle simultaneous sensor readings and data transmission over UART.
+                                    </p>
+                                    <div class="flex gap-6">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="#">
+                                            GitHub <span
+                                                class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform"
+                                                data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 4 -->
+                        <div class="group">
+                            <div
+                                class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high">
+                                <div class="aspect-video relative overflow-hidden">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        data-alt="overhead view of a custom PCB with neatly arranged electronic components and silver solder joints on a dark workbench"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuATcV1NRn1SRpIIYP3r7n_p9z1I6RKZDeCUwjLTmbbBoX691UTNtamK8Z2TK3WpFS1oqAD4OaYDmzE5XpWOsDJhZOJLSRNw5mEEQJdYLpLmnYeD_vV9Bvl42Ja2SqgkOqiq4_vmseXzawAP3OvCM0LUpTL4UIj8N2aAgdCeCUYISkbM73mTceYCgaX_xhrviQeTgw2f8a0ui0X3t-mXV2TypcqtkVgDMKZmwyDBrpQ6ln_Jw6WKPplf4FJYY9-6SfMHATXfXrkNIxw" />
+                                </div>
+                                <div class="p-10">
+                                    <div class="flex gap-2 mb-6">
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">C</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">CubeIDE</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">IoT Smart Lock</h4>
+                                    <p class="text-outline leading-relaxed mb-8">Security system prototype featuring
+                                        biometric authentication and remote control via a custom Bluetooth interface.
+                                    </p>
+                                    <div class="flex gap-6">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="#">
+                                            GitHub <span
+                                                class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform"
+                                                data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="py-24 px-8 bg-surface-container-low" id="contact">
+            <div class="max-w-7xl mx-auto grid grid-cols-12 gap-12">
+                <div class="col-span-12 md:col-span-5">
+                    <h2 class="font-headline text-5xl font-black mb-8">Get In Touch</h2>
+                    <p class="text-lg text-outline mb-12">Ready to collaborate on the next technical breakthrough? Send
+                        me a message or find me on professional networks.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-6">
+                            <div
+                                class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-tertiary">
+                                <span class="material-symbols-outlined" data-icon="mail">mail</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-outline uppercase">Email</p>
+                                <p class="text-xl font-headline font-bold text-on-surface">
+                                    wassim.chouayakh@insat.ucar.tn</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div
+                                class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-tertiary">
+                                <span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-outline uppercase">Location</p>
+                                <p class="text-xl font-headline font-bold text-on-surface">Tunis, Tunisia</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 pt-6">
+                            <a class="w-12 h-12 bg-primary-container text-white rounded-xl flex items-center justify-center hover:bg-primary transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined" data-icon="link">link</span>
+                            </a>
+                            <a class="w-12 h-12 bg-surface-container-highest text-primary rounded-xl flex items-center justify-center hover:bg-outline-variant transition-colors"
+                                href="#">
+                                <span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-12 md:col-span-7 bg-background p-10 rounded-3xl">
+                    <form class="space-y-8" action="https://formspree.io/f/mykbjvzl" method="POST">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-outline uppercase tracking-widest px-1">Your
+                                    Name</label>
+                                <input name="name"
+                                    class="w-full bg-surface-container-lowest border-none border-b-2 border-outline/20 focus:border-tertiary focus:ring-0 text-on-surface p-4 transition-all"
+                                    placeholder="Name" type="text" required />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-outline uppercase tracking-widest px-1">Your Email
+                                    Address</label>
+                                <input name="email"
+                                    class="w-full bg-surface-container-lowest border-none border-b-2 border-outline/20 focus:border-tertiary focus:ring-0 text-on-surface p-4 transition-all"
+                                    placeholder="Name@gmail.com" type="email" required />
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-outline uppercase tracking-widest px-1">Message</label>
+                            <textarea name="message"
+                                class="w-full bg-surface-container-lowest border-none border-b-2 border-outline/20 focus:border-tertiary focus:ring-0 text-on-surface p-4 transition-all resize-none"
+                                placeholder="How can I help you?" rows="4" required></textarea>
+                        </div>
+                        <button
+                            class="w-full md:w-auto bg-primary text-on-primary px-12 py-4 rounded-xl font-black uppercase tracking-widest hover:shadow-[0_0_20px_rgba(167,200,255,0.3)] transition-all"
+                            type="submit">
+                            Send Transmission
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-[#001c3a] w-full py-12 px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6">
+            <div class="flex items-center gap-4">
+                <span class="text-lg font-bold text-[#0074d9]">W</span>
+                <!-- Le texte "2024 Wassim..." a été supprimé ici -->
+            </div>
+            <div class="flex gap-8">
+                <a class="text-[#8b919e] font-['Inter'] text-sm uppercase tracking-widest hover:text-[#3ce368] transition-colors opacity-80 hover:opacity-100"
+                    href="https://www.linkedin.com/in/wassim-chouayakh-174534178/">LinkedIn</a>
+                <a class="text-[#8b919e] font-['Inter'] text-sm uppercase tracking-widest hover:text-[#3ce368] transition-colors opacity-80 hover:opacity-100"
+                    href="https://github.com/king-wassim">GitHub</a>
+            </div>
+            <button
+                class="bg-surface-container-highest p-3 rounded-full text-tertiary hover:bg-tertiary hover:text-on-tertiary transition-all"
+                onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <span class="material-symbols-outlined" data-icon="expand_less">expand_less</span>
+            </button>
+        </div>
+    </footer>
