@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Wassim Chouayakh | Full-Stack &amp; Embedded Engineer</title>
+
+    <!-- R7: SEO & Open Graph meta tags -->
+    <meta name="description" content="Wassim Chouayakh — Engineering student at INSAT Tunisia, specializing in full-stack development (React, NestJS) and embedded systems (STM32, CAN/UDS, FreeRTOS)." />
+    <meta property="og:title" content="Wassim | Engineering Portfolio" />
+    <meta property="og:description" content="Software & Embedded Systems developer. Projects in C/C++, React, Flutter, Python ML and STM32 firmware. INSAT Tunisia." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://king-wassim.github.io/" />
+    <meta property="og:image" content="https://king-wassim.github.io/screen.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Wassim | Engineering Portfolio" />
+    <meta name="twitter:description" content="Software & Embedded Systems developer. Projects in C/C++, React, Flutter, Python ML and STM32 firmware. INSAT Tunisia." />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <!-- R6: Single Material Symbols link (duplicate removed) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#a7c8ff",
+                        "surface-container-lowest": "#000e23",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#2f486a",
+                        "outline-variant": "#414753",
+                        "surface-tint": "#a7c8ff",
+                        "on-surface-variant": "#c1c6d5",
+                        "inverse-surface": "#d4e3ff",
+                        "on-primary-fixed-variant": "#004788",
+                        "background": "#00142b",
+                        "inverse-primary": "#005eb2",
+                        "on-secondary": "#163152",
+                        "secondary": "#afc8f0",
+                        "on-tertiary-fixed-variant": "#00531d",
+                        "error": "#ffb4ab",
+                        "surface": "#00142b",
+                        "secondary-fixed": "#d4e3ff",
+                        "tertiary": "#3ce368",
+                        "on-primary-fixed": "#001b3b",
+                        "surface-variant": "#1b3656",
+                        "tertiary-fixed-dim": "#3ce368",
+                        "primary-fixed": "#d5e3ff",
+                        "on-tertiary": "#003911",
+                        "primary": "#a7c8ff",
+                        "surface-container-highest": "#1b3656",
+                        "on-primary-container": "#fdfbff",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "inverse-on-surface": "#163152",
+                        "tertiary-container": "#008734",
+                        "surface-bright": "#203a5b",
+                        "secondary-container": "#2f486a",
+                        "secondary-fixed-dim": "#afc8f0",
+                        "on-secondary-fixed": "#001c3a",
+                        "on-surface": "#d4e3ff",
+                        "on-primary": "#003060",
+                        "surface-container": "#012040",
+                        "surface-container-high": "#0e2b4b",
+                        "on-secondary-container": "#9eb7de",
+                        "outline": "#8b919e",
+                        "on-tertiary-fixed": "#002107",
+                        "tertiary-fixed": "#6aff86",
+                        "on-background": "#d4e3ff",
+                        "primary-container": "#0074d9",
+                        "surface-container-low": "#001c3a",
+                        "on-tertiary-container": "#f7fff2",
+                        "surface-dim": "#00142b"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .bg-grid-pattern {
+            background-image: radial-gradient(circle, #1b3656 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .blueprint-border {
+            border-left: 1px solid rgba(167, 200, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden bg-background text-on-surface font-body selection:bg-tertiary selection:text-on-tertiary">
+    <!-- Mobile Menu Overlay (R2) -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-40 flex flex-col justify-center items-center gap-8 bg-[#012040]/95 backdrop-blur-xl
+               translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+        aria-hidden="true">
+        <a class="font-['Space_Grotesk'] font-bold text-2xl tracking-tight text-[#a7c8ff] mobile-nav-link" href="#home">Home</a>
+        <a class="font-['Space_Grotesk'] font-bold text-2xl tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-colors mobile-nav-link" href="#about">About</a>
+        <a class="font-['Space_Grotesk'] font-bold text-2xl tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-colors mobile-nav-link" href="#experience">Experience</a>
+        <a class="font-['Space_Grotesk'] font-bold text-2xl tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-colors mobile-nav-link" href="#skills">Skills</a>
+        <a class="font-['Space_Grotesk'] font-bold text-2xl tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-colors mobile-nav-link" href="#projects">Projects</a>
+        <a class="font-['Space_Grotesk'] font-bold text-2xl tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-colors mobile-nav-link" href="#contact">Contact</a>
+        <div class="flex gap-4 mt-2">
+            <a class="flex items-center gap-2 text-[#8b919e] hover:text-[#a7c8ff] transition-colors mobile-nav-link" href="ChouayakhWassim.pdf" download="Wassim_Software_CV.pdf">
+                <span class="material-symbols-outlined text-xl">description</span> <span class="text-sm font-bold uppercase tracking-wider">Software CV</span>
+            </a>
+            <a class="flex items-center gap-2 text-[#8b919e] hover:text-[#a7c8ff] transition-colors mobile-nav-link" href="CV.pdf" download="Wassim_Embedded_CV.pdf">
+                <span class="material-symbols-outlined text-xl">memory</span> <span class="text-sm font-bold uppercase tracking-wider">Embedded CV</span>
+            </a>
+        </div>
+        <a href="#contact"
+            class="mt-4 bg-primary-container text-on-primary-container px-8 py-3 rounded-xl font-bold mobile-nav-link">
+            Hire Me
+        </a>
+    </div>
+
+    <!-- TopNavBar -->
+    <nav class="bg-[#00142b]/70 backdrop-blur-md fixed top-0 w-full z-50">
+        <div class="flex justify-between items-center w-full px-4 md:px-8 py-4 max-w-7xl mx-auto">
+            <a class="text-2xl font-black text-[#0074d9] hover:text-[#a7c8ff] transition-colors font-['Space_Grotesk'] tracking-tight"
+                href="#">W</a>
+            <!-- Desktop nav links -->
+            <div class="hidden md:flex gap-8 items-center">
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#a7c8ff] border-b-2 border-[#3ce368] pb-1"
+                    href="#home">Home</a>
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-all"
+                    href="#about">About</a>
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-all"
+                    href="#experience">Experience</a>
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-all"
+                    href="#skills">Skills</a>
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-all"
+                    href="#projects">Projects</a>
+                <a class="font-['Space_Grotesk'] font-bold tracking-tight text-[#8b919e] hover:text-[#a7c8ff] transition-all"
+                    href="#contact">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex gap-2">
+                    <!-- GitHub profile link -->
+                    <a class="p-2 text-outline hover:text-primary transition-colors flex items-center gap-1.5 text-sm font-bold"
+                        href="https://github.com/king-wassim" target="_blank" rel="noopener noreferrer"
+                        title="GitHub profile">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                        </svg>
+                        <span class="hidden md:inline">GitHub</span>
+                    </a>
+                    <a class="p-2 text-outline hover:text-primary transition-colors" href="ChouayakhWassim.pdf"
+                        download="Wassim_Software_CV.pdf" title="Download Software CV" aria-label="Download Software CV">
+                        <span class="material-symbols-outlined" data-icon="description">description</span>
+                    </a>
+                    <a class="p-2 text-outline hover:text-primary transition-colors" href="CV.pdf"
+                        download="Wassim_Embedded_CV.pdf" title="Download Embedded CV" aria-label="Download Embedded CV">
+                        <span class="material-symbols-outlined" data-icon="memory">memory</span>
+                    </a>
+                </div>
+                <a href="#contact"
+                    class="hidden md:inline-block bg-primary-container text-on-primary-container px-6 py-2 rounded-xl font-bold scale-95 active:scale-90 transition-transform">Hire
+                    Me</a>
+                <!-- R2: Hamburger button (mobile only) -->
+                <button id="hamburger-btn"
+                    class="md:hidden p-2 text-outline hover:text-primary transition-colors"
+                    aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span id="hamburger-icon" class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative min-h-[100svh] md:min-h-[921px] flex flex-col justify-center overflow-hidden px-4 md:px-8" id="home">
+            <div class="absolute inset-0 z-0 opacity-20">
+                <!-- R4: local hero image replacing external CDN -->
+                <img class="w-full h-full object-cover"
+                    alt="STM32 microcontroller circuit board with blue LED glows and technical schematics"
+                    src="screen.png"
+                    fetchpriority="high"
+                    onerror="this.parentElement.style.background='#0e2b4b';this.style.display='none'" />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background z-10"></div>
+            <div class="max-w-7xl mx-auto w-full relative z-20 grid grid-cols-12 gap-6">
+                <div class="col-span-12 md:col-start-3 md:col-span-9">
+                    <span
+                        class="font-headline text-tertiary tracking-widest uppercase text-sm font-bold mb-4 block">Engineered
+                        for Precision</span>
+                    <h1 class="font-headline text-5xl md:text-7xl lg:text-9xl font-extrabold text-on-surface leading-tight mb-6">
+                        Wassim</h1>
+                    <p
+                        class="font-headline text-xl md:text-2xl lg:text-3xl text-primary font-light mb-8 max-w-2xl leading-relaxed">
+                        1st Year Engineering Student | <span class="text-on-surface">Software &amp; Embedded Systems
+                            Developer</span>
+                    </p>
+                    <p class="text-outline text-lg mb-10 max-w-xl">
+                        From register-level firmware to full-stack web platforms — I transform complex challenges into elegant, high-performance solutions. Bridging the gap between hardware and software, one project at a time.
+                    </p>
+                    <div class="flex flex-wrap gap-6">
+                        <a class="bg-primary-container text-on-primary-container px-6 py-3 md:px-8 md:py-4 text-sm md:text-base rounded-xl font-bold flex items-center gap-3 hover:bg-primary transition-colors"
+                            href="#projects">
+                            Discover my projects
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+                        </a>
+                        <a class="border border-outline/30 text-primary px-6 py-3 md:px-8 md:py-4 text-sm md:text-base rounded-xl font-bold hover:bg-surface-container-high transition-colors"
+                            href="#contact">
+                            Contact me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Me Section -->
+        <section class="py-16 md:py-24 px-4 md:px-8 bg-surface-container-low" id="about">
+            <div class="max-w-7xl mx-auto grid grid-cols-12 gap-12 items-center">
+                <div class="col-span-12 md:col-span-4 aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                    <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        alt="Portrait photo of Wassim Chouayakh, engineering student at INSAT Tunisia"
+                        src="image.jpg" />
+                </div>
+                <div class="col-span-12 md:col-span-8 blueprint-border pl-0 md:pl-12">
+                    <h2 class="font-headline text-4xl font-bold mb-8 flex items-center gap-4">
+                        <span class="material-symbols-outlined text-tertiary" data-icon="person">person</span>
+                        About Me
+                    </h2>
+                    <p class="text-xl text-on-surface-variant leading-relaxed mb-8">
+                        Versatile engineering student with a rare dual expertise in embedded firmware and full-stack software development. At INSAT Tunisia, I've gone far beyond the classroom — designing automotive diagnostic stacks in C, building AI-powered web platforms with React and NestJS, and developing cross-platform mobile applications from scratch.
+                    </p>
+                    <p class="text-xl text-on-surface-variant leading-relaxed mb-12">
+                        What sets me apart is my ability to operate across the entire technology stack: from writing bare-metal register drivers on STM32 microcontrollers to deploying intelligent applications powered by machine learning. This end-to-end perspective allows me to architect solutions that are not just functional, but optimized at every layer.
+                    </p>
+                    <div class="w-full">
+                        <h3
+                            class="font-headline text-lg font-bold text-tertiary mb-6 uppercase tracking-tighter flex items-center gap-3">
+                            <span class="material-symbols-outlined text-tertiary" data-icon="school">school</span>
+                            Education
+                        </h3>
+                        <div class="space-y-6">
+                            <!-- Engineering Cycle -->
+                            <div class="bg-surface-container-high p-8 rounded-2xl border-l-4 border-tertiary">
+                                <div
+                                    class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                    <div>
+                                        <p class="text-xl font-bold text-on-surface leading-tight mb-1">National
+                                            Institute of Applied Science and Technology (INSAT)</p>
+                                        <p class="text-primary text-sm font-medium mb-4 md:mb-0">Tunisia</p>
+                                    </div>
+                                    <div class="text-left md:text-right shrink-0">
+                                        <p class="text-outline font-bold md:text-sm">Sep 2025 – Present</p>
+                                        <p class="text-tertiary text-xs font-bold mt-1 uppercase tracking-wider">
+                                            Expected Graduation: 2028</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-outline/10">
+                                    <p class="text-on-surface flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-tertiary text-sm"
+                                            data-icon="chevron_right">chevron_right</span>
+                                        <strong class="text-on-surface">Engineering Cycle in Industrial IT and
+                                            Automation</strong>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Preparatory Cycle -->
+                            <div class="bg-surface-container-high p-8 rounded-2xl border-l-4 border-tertiary">
+                                <div
+                                    class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                    <div>
+                                        <p class="text-xl font-bold text-on-surface leading-tight mb-1">National
+                                            Institute of Applied Science and Technology (INSAT)</p>
+                                        <p class="text-primary text-sm font-medium mb-4 md:mb-0">Tunisia</p>
+                                    </div>
+                                    <div class="text-left md:text-right shrink-0">
+                                        <p class="text-outline font-bold md:text-sm">Sep 2023 – Jun 2025</p>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-outline/10">
+                                    <p class="text-on-surface flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-tertiary text-sm"
+                                            data-icon="chevron_right">chevron_right</span>
+                                        <strong class="text-on-surface">Preparatory Cycle in Mathematics, Physics, and
+                                            Industrial IT and Automation</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- R9: Experience Section -->
+        <section class="py-16 md:py-24 px-4 md:px-8 bg-background" id="experience">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-12 mb-16">
+                    <div class="col-span-12 md:col-start-3">
+                        <h2 class="font-headline text-4xl font-bold mb-4 flex items-center gap-4">
+                            <span class="material-symbols-outlined text-tertiary">work</span>
+                            Experience
+                        </h2>
+                        <div class="h-1 w-20 bg-tertiary"></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-12">
+                    <div class="col-span-12 md:col-start-3 md:col-span-10 space-y-6">
+                        <!-- KPIT Internship -->
+                        <div class="bg-surface-container-high p-8 rounded-2xl border-l-4 border-tertiary">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                <div>
+                                    <p class="text-xl font-bold text-on-surface leading-tight mb-1">Python Tooling Developer — Intern</p>
+                                    <p class="text-primary text-sm font-medium">KPIT Technologies</p>
+                                </div>
+                                <div class="text-left md:text-right shrink-0">
+                                    <p class="text-outline font-bold text-sm">2025</p>
+                                    <p class="text-tertiary text-xs font-bold mt-1 uppercase tracking-wider">Remote</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-outline/10">
+                                <p class="text-on-surface-variant leading-relaxed">
+                                    Designed and developed a cross-platform desktop application (Flutter + Python backend) to automate static code analysis for automotive software teams. The tool enforces coding standards critical for safety-certified codebases — featuring Black & Flake8 integration, customizable rule engines, real-time filtering, and one-click Excel report generation, significantly reducing manual review time.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Lions Club Associative Experience -->
+                        <div class="bg-surface-container-high p-8 rounded-2xl border-l-4 border-outline/30 hover:border-primary transition-colors">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                                <div>
+                                    <p class="text-xl font-bold text-on-surface leading-tight mb-1">Internal Coordinator &amp; Active Member</p>
+                                    <p class="text-primary text-sm font-medium">Lions Club</p>
+                                </div>
+                                <div class="text-left md:text-right shrink-0">
+                                    <p class="text-outline font-bold text-sm">Associative Work</p>
+                                    <p class="text-tertiary text-xs font-bold mt-1 uppercase tracking-wider">Tunis</p>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-outline/10">
+                                <p class="text-on-surface-variant leading-relaxed">
+                                    Led the internal organization and logistics for the "Couffin Ramadan" charitable initiative. Coordinated team efforts, managed resource distribution, and ensured the successful execution of the campaign. This experience significantly strengthened my skills in project management, team leadership, and cross-functional communication.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Skills Section -->
+        <section class="py-16 md:py-24 px-4 md:px-8 bg-background bg-grid-pattern" id="skills">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-12 mb-16">
+                    <div class="col-span-12 md:col-start-3">
+                        <h2 class="font-headline text-4xl font-bold mb-4">Technical Proficiency</h2>
+                        <div class="h-1 w-20 bg-tertiary"></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Programming -->
+                    <div
+                        class="bg-surface-container-low p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300">
+                        <span class="material-symbols-outlined text-tertiary text-4xl mb-6"
+                            data-icon="terminal">terminal</span>
+                        <h3 class="font-headline text-xl font-bold mb-6">Programming</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> C/C++</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Python</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> JavaScript</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> TypeScript</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Dart</span>
+                        </div>
+                    </div>
+                    <!-- Web & Mobile -->
+                    <div
+                        class="bg-surface-container-low p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300">
+                        <span class="material-symbols-outlined text-tertiary text-4xl mb-6"
+                            data-icon="web">web</span>
+                        <h3 class="font-headline text-xl font-bold mb-6">Web & Mobile</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> React</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> NestJS</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Flutter</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> PostgreSQL</span>
+                        </div>
+                    </div>
+                    <!-- Embedded Systems -->
+                    <div
+                        class="bg-surface-container-low p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300">
+                        <span class="material-symbols-outlined text-tertiary text-4xl mb-6"
+                            data-icon="memory">memory</span>
+                        <h3 class="font-headline text-xl font-bold mb-6">Embedded</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> STM32 (CubeIDE)</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> FreeRTOS</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> CAN / UDS</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> IoT</span>
+                        </div>
+                    </div>
+                    <!-- Tools -->
+                    <div
+                        class="bg-surface-container-low p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300">
+                        <span class="material-symbols-outlined text-tertiary text-4xl mb-6"
+                            data-icon="construction">construction</span>
+                        <h3 class="font-headline text-xl font-bold mb-6">Tools</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Git & GitHub</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Proteus</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> MATLAB</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> CMake</span>
+                        </div>
+                    </div>
+                    <!-- Core -->
+                    <div
+                        class="bg-surface-container-low p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300">
+                        <span class="material-symbols-outlined text-tertiary text-4xl mb-6"
+                            data-icon="groups">groups</span>
+                        <h3 class="font-headline text-xl font-bold mb-6">Core</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Problem-solving</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Teamwork</span>
+                            <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Fast learning</span>
+                        </div>
+                    </div>
+                    <!-- R10: Languages -->
+                    <div
+                        class="bg-surface-container-low p-8 rounded-2xl hover:bg-surface-container-high transition-all duration-300">
+                        <span class="material-symbols-outlined text-tertiary text-4xl mb-6"
+                            data-icon="language">language</span>
+                        <h3 class="font-headline text-xl font-bold mb-6">Languages</h3>
+                        <div class="flex flex-col gap-3">
+                            <div class="flex justify-between items-center">
+                                <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Arabic</span>
+                                <span class="text-xs text-outline font-bold uppercase tracking-wider">Native</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> French</span>
+                                <span class="text-xs text-outline font-bold uppercase tracking-wider">Fluent — C1</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="px-3 py-1 bg-surface-container-highest rounded-full text-xs font-bold text-tertiary flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> English</span>
+                                <span class="text-xs text-outline font-bold uppercase tracking-wider">Fluent — B2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects Section -->
+        <section class="py-16 md:py-24 px-4 md:px-8" id="projects">
+            <div class="max-w-7xl mx-auto">
+                <!-- Section Header -->
+                <div class="mb-20">
+                    <h2 class="font-headline text-5xl font-black mb-4">Project Portfolio</h2>
+                    <p class="text-outline text-lg">A selection of my technical implementations across software and
+                        hardware.</p>
+                </div>
+                <!-- Software Projects -->
+                <div class="mb-24">
+                    <div class="flex items-center gap-4 mb-12">
+                        <span class="h-px flex-grow bg-outline/20"></span>
+                        <h3 class="font-headline text-2xl font-bold uppercase tracking-widest text-primary">Software
+                            Projects</h3>
+                        <span class="h-px flex-grow bg-outline/20"></span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <!-- Project 1: Fajri App -->
+                        <div class="group h-full">
+                            <div class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high flex flex-col h-full cursor-pointer" onclick="window.open('https://github.com/king-wassim/fajri-app', '_blank')">
+                                <div class="aspect-video relative overflow-hidden shrink-0">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt="minimalist modern mobile app interface showing Islamic prayer times and a dawn Fajr alarm"
+                                        loading="lazy"
+                                        src="fajri_app.png" />
+                                </div>
+                                <div class="p-10 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-6 flex-wrap">
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Flutter</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Dart</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Android / iOS</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">Fajri App</h4>
+                                    <p class="text-outline leading-relaxed mb-8">Cross-platform mobile application engineered for precision — delivering accurate Fajr (dawn) alerts with geolocation-aware prayer time calculations. Built with Flutter, featuring persistent background alarms, local push notifications, and a clean minimalist UI designed for daily reliability.</p>
+                                    <div class="flex gap-6 mt-auto pt-4 border-t border-outline/10">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="https://github.com/king-wassim/fajri-app" target="_blank" rel="noopener noreferrer">
+                                            GitHub <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform" data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 2: Hospital Dashboard -->
+                        <div class="group h-full">
+                            <div class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high flex flex-col h-full cursor-pointer" onclick="window.open('https://github.com/king-wassim/Hospital_Dashboard', '_blank')">
+                                <div class="aspect-video relative overflow-hidden shrink-0">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt="professional dark-themed modern web application dashboard for hospital management showing patient statistics and ML risk prediction"
+                                        loading="lazy"
+                                        src="hospital_dashboard.png" />
+                                </div>
+                                <div class="p-10 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-6 flex-wrap">
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">React 19</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">NestJS</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">PostgreSQL</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Python ML</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">Hospital Dashboard</h4>
+                                    <p class="text-outline leading-relaxed mb-8">Enterprise-grade hospital management platform built on a multi-tenant monorepo architecture. Features JWT-authenticated role-based access control, tenant-scoped data isolation, and an integrated Python ML pipeline for real-time patient risk prediction — all served through a modern React 19 frontend backed by NestJS and PostgreSQL.</p>
+                                    <div class="flex gap-6 mt-auto pt-4 border-t border-outline/10">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="https://github.com/king-wassim/Hospital_Dashboard" target="_blank" rel="noopener noreferrer">
+                                            GitHub <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform" data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 3: SightLine -->
+                        <div class="group">
+                            <div
+                                class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high cursor-pointer" onclick="window.open('https://github.com/king-wassim/sightline', '_blank')">
+                                <div class="aspect-video relative overflow-hidden">
+                                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt="AI-powered visual risk analysis platform dashboard showing image analysis with risk scoring, compliance recommendations, and safety insights"
+                                        loading="lazy"
+                                        src="sightline_dashboard.png" />
+                                </div>
+                                <div class="p-10">
+                                    <div class="flex gap-2 mb-6">
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">React</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">TypeScript</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Google Gemini</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">SightLine</h4>
+                                    <p class="text-outline leading-relaxed mb-8">AI-driven workplace safety platform that transforms visual inspections into actionable intelligence. Upload site photos for automated risk scoring against OSHA, INRS, and ISO 45001 standards. Powered by Google Gemini with structured output, a RAG-based safety assistant, and a production-ready stack: React 19, Express, PostgreSQL, and Prisma ORM.</p>
+                                    <div class="flex gap-6">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="https://github.com/king-wassim/sightline" target="_blank" rel="noopener noreferrer">
+                                            GitHub <span
+                                                class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform"
+                                                data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                        <!-- R11: add href when deployed -->
+                                        <!-- <a class="text-primary font-bold flex items-center gap-2 group/link" href="YOUR_DEMO_URL" target="_blank" rel="noopener noreferrer">
+                                            Live Demo <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">open_in_new</span>
+                                        </a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 4: FoodWise -->
+                        <div class="group">
+                            <div
+                                class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high cursor-pointer" onclick="window.open('https://github.com/king-wassim/foodwise', '_blank')">
+                                <div class="aspect-video relative overflow-hidden">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt="Modern web application interface showing AI food analysis, scanning a healthy meal with glowing overlays of nutritional data"
+                                        loading="lazy"
+                                        src="foodwise_dashboard.png" />
+                                </div>
+                                <div class="p-10">
+                                    <div class="flex gap-2 mb-6">
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">React 19</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">TypeScript</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Gemini AI</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">FoodWise</h4>
+                                    <p class="text-outline leading-relaxed mb-8">Smart nutrition companion that leverages Google Gemini's vision capabilities to decode any meal. Point your camera at food or scan packaging labels — get instant allergen detection, detailed macro/micronutrient breakdowns, and personalized dietary insights. Built with React 19 and TypeScript for a seamless, responsive experience.</p>
+                                    <div class="flex gap-6">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="https://github.com/king-wassim/foodwise" target="_blank" rel="noopener noreferrer">
+                                            GitHub <span
+                                                class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform"
+                                                data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                        <!-- R11: add href when deployed -->
+                                        <!-- <a class="text-primary font-bold flex items-center gap-2 group/link" href="YOUR_DEMO_URL" target="_blank" rel="noopener noreferrer">
+                                            Live Demo <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">open_in_new</span>
+                                        </a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 5: Antenna Simulation -->
+                        <div class="group h-full">
+                            <div
+                                class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high flex flex-col h-full cursor-pointer" onclick="window.open('https://github.com/king-wassim/antenna_configuration', '_blank')">
+                                <div class="aspect-video relative overflow-hidden shrink-0">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt="Modern technical web application interface showing a circular antenna array simulation, radiation patterns in 3D, signal heatmaps, and a machine learning inference overlay predicting ring configurations."
+                                        loading="lazy"
+                                        src="antenna_simulation_dashboard.png" />
+                                </div>
+                                <div class="p-10 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-6 flex-wrap">
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">TypeScript</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">React</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Node.js</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Python ML</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">Antenna Array Simulation</h4>
+                                    <p class="text-outline leading-relaxed mb-8">A full-stack monorepo for simulating circular antenna arrays, comparing radiation patterns, and running ML-based inference (MobileNetV2) on captured pattern images to predict ring configurations.</p>
+                                    <div class="flex gap-6 mt-auto pt-4 border-t border-outline/10">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="https://github.com/king-wassim/antenna_configuration" target="_blank" rel="noopener noreferrer">
+                                            GitHub <span
+                                                class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform"
+                                                data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 4 -->
+                        <div class="group h-full">
+                            <div
+                                class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high flex flex-col h-full cursor-pointer" onclick="window.open('https://github.com/king-wassim/desktop-app-windows', '_blank')">
+                                <div class="aspect-video relative overflow-hidden shrink-0">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt="KPIT Python File Analyzer desktop interface showing options to select folder, import rules, filter, generate excel, auto black & autoflake, and delete results"
+                                        loading="lazy"
+                                        src="KPIT_image.png" />
+                                </div>
+                                <div class="p-10 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-6 flex-wrap">
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Flutter</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Python</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Dart</span>
+                                        <span
+                                            class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Desktop</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">KPIT Python File Analyzer</h4>
+                                    <p class="text-outline leading-relaxed mb-8">Professional-grade desktop tool built during my KPIT Technologies internship. Automates Python code quality enforcement for automotive teams — integrating Black formatter, Flake8 linter, custom rule engines, and one-click Excel report generation. Cross-platform Flutter UI communicates with a Python analysis backend.</p>
+                                    <div class="flex gap-6 mt-auto pt-4 border-t border-outline/10">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="https://github.com/king-wassim/desktop-app-windows" target="_blank" rel="noopener noreferrer">
+                                            GitHub <span
+                                                class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform"
+                                                data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Embedded Projects -->
+                <div>
+                    <div class="flex items-center gap-4 mb-12">
+                        <span class="h-px flex-grow bg-outline/20"></span>
+                        <h3 class="font-headline text-2xl font-bold uppercase tracking-widest text-primary">Embedded
+                            STM32 Projects</h3>
+                        <span class="h-px flex-grow bg-outline/20"></span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <!-- Project: VECU-UDS -->
+                        <div class="group h-full">
+                            <div class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high flex flex-col h-full cursor-pointer" onclick="window.open('https://github.com/king-wassim/vecu-uds', '_blank')">
+                                <div class="aspect-video relative overflow-hidden shrink-0">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt="high aesthetic technical photograph or 3d render of an automotive engine control unit (ECU) connected to a CAN bus analyzer or logic analyzer, glowing blue lines representing data transfer, dark tech background"
+                                        loading="lazy"
+                                        src="vecu_uds_project.png" />
+                                </div>
+                                <div class="p-10 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-6 flex-wrap">
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">C</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">UDS / ISO-TP</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">CAN Bus</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">CMake</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">VECU-UDS: Automotive Diagnostic Stack</h4>
+                                    <p class="text-outline leading-relaxed mb-8">
+                                        Production-quality implementation of the Unified Diagnostic Services (UDS) protocol stack in pure C, targeting automotive ECU diagnostics. Features complete ISO-TP transport layer handling, CAN bus communication management, and a virtual CAN testing environment — built with modular architecture and CMake for cross-platform compilation.
+                                    </p>
+                                    <div class="flex gap-6 mt-auto pt-4 border-t border-outline/10">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="https://github.com/king-wassim/vecu-uds" target="_blank" rel="noopener noreferrer">
+                                            GitHub <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform" data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 3: STM32 Mini-Projects -->
+                        <div class="group h-full">
+                            <div class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high flex flex-col h-full cursor-pointer" onclick="window.open('https://github.com/king-wassim/stm32-mini-projects', '_blank')">
+                                <div class="aspect-video relative overflow-hidden shrink-0">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt="high aesthetic photograph of an STM32 Blue Pill microcontroller connected with wires on a dark tech background"
+                                        loading="lazy"
+                                        src="stm32_mini_projects.png" />
+                                </div>
+                                <div class="p-10 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-6 flex-wrap">
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">STM32 HAL</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">Bare-Metal</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">C</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">STM32 Mini-Projects Archive</h4>
+                                    <p class="text-outline leading-relaxed mb-8">
+                                        Comprehensive firmware portfolio demonstrating mastery of the STM32F103C8T6 (Blue Pill) ecosystem. Each project provides dual implementations: one using the HAL abstraction layer and one at the bare-metal register level — covering GPIO, Timers, PWM, UART, ADC, and I2C peripherals. A progressive learning path from blinking LEDs to complex communication protocols.
+                                    </p>
+                                    <div class="flex gap-6 mt-auto pt-4 border-t border-outline/10">
+                                        <a class="text-tertiary font-bold flex items-center gap-2 group/link" href="https://github.com/king-wassim/stm32-mini-projects" target="_blank" rel="noopener noreferrer">
+                                            GitHub <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform" data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 4: IoT Monitoring System -->
+                        <div class="group h-full">
+                            <div
+                                class="bg-surface-container-low rounded-2xl overflow-hidden transition-all duration-500 group-hover:scale-[1.02] group-hover:bg-surface-container-high flex flex-col h-full cursor-pointer" onclick="window.open('https://github.com/king-wassim/iot-sensor-stm32', '_blank')">
+                                <div class="aspect-video relative overflow-hidden shrink-0">
+                                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        alt="high quality macro photograph of an STM32 microcontroller wired to an ESP8266 wifi module"
+                                        loading="lazy"
+                                        src="iot_stm32_esp8266.png" />
+                                </div>
+                                <div class="p-10 flex flex-col flex-grow">
+                                    <div class="flex gap-2 mb-6 flex-wrap">
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">STM32F4</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">ESP8266</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">UART DMA</span>
+                                        <span class="text-[10px] font-bold tracking-tighter uppercase px-2 py-1 bg-surface-container-highest text-tertiary rounded">ThingSpeak API</span>
+                                    </div>
+                                    <h4 class="font-headline text-2xl font-bold mb-4">Monitoring IoT (STM32 &amp; ESP8266)</h4>
+                                    <p class="text-outline leading-relaxed mb-8">
+                                        End-to-end IoT pipeline built from scratch: an STM32F4 microcontroller reads environmental sensors via 12-bit ADC, processes data in real-time, and transmits to the cloud through a custom ESP8266 Wi-Fi driver. Features efficient DMA-based UART reception (ReceiveToIdle), AT command protocol handling, and automated HTTP logging to the ThingSpeak analytics platform.
+                                    </p>
+                                    <div class="flex gap-4 mt-auto flex-wrap pt-4 border-t border-outline/10">
+                                        <a class="text-tertiary font-bold flex items-center gap-1 group/link text-sm" href="https://github.com/king-wassim/iot-sensor-stm32" target="_blank" rel="noopener noreferrer">
+                                            GitHub <span class="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform" data-icon="open_in_new">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="py-16 md:py-24 px-4 md:px-8 bg-surface-container-low" id="contact">
+            <div class="max-w-7xl mx-auto grid grid-cols-12 gap-12">
+                <div class="col-span-12 md:col-span-5">
+                    <h2 class="font-headline text-5xl font-black mb-8">Get In Touch</h2>
+                    <p class="text-lg text-outline mb-12">Open to internship opportunities, collaborative projects, and technical
+                        challenges across software and embedded systems. Whether you need a
+                        full-stack developer, a firmware engineer, or someone who bridges both
+                        worlds — let's connect.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-6">
+                            <div
+                                class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-tertiary">
+                                <span class="material-symbols-outlined" data-icon="mail">mail</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-outline uppercase">Email</p>
+                                <p class="text-xl font-headline font-bold text-on-surface">
+                                    <span class="break-all">wassim.chouayakh@insat.ucar.tn</span></p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div
+                                class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-tertiary">
+                                <span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-outline uppercase">Location</p>
+                                <p class="text-xl font-headline font-bold text-on-surface">Tunis, Tunisia</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 pt-6">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-12 md:col-span-7 bg-background p-10 rounded-3xl">
+                    <!-- R3: Async contact form via fetch + Formspree -->
+                    <div id="form-success" class="hidden flex-col items-center justify-center h-full gap-6 py-12 text-center">
+                        <span class="material-symbols-outlined text-tertiary text-6xl">check_circle</span>
+                        <h3 class="font-headline text-2xl font-bold text-on-surface">Message sent!</h3>
+                        <p class="text-outline">Thanks for reaching out. I'll get back to you as soon as possible.</p>
+                    </div>
+                    <div id="form-error" class="hidden mb-6 p-4 bg-error-container rounded-xl text-on-error-container text-sm font-bold">
+                        Something went wrong. Please try again or email me directly at
+                        <a href="mailto:wassim.chouayakh@insat.ucar.tn" class="underline">wassim.chouayakh@insat.ucar.tn</a>.
+                    </div>
+                    <form id="contact-form" class="space-y-8">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-outline uppercase tracking-widest px-1" for="contact-name">Your Name</label>
+                                <input id="contact-name" name="name"
+                                    class="w-full bg-surface-container-lowest border-none border-b-2 border-outline/20 focus:border-tertiary focus:ring-0 text-on-surface p-4 transition-all"
+                                    type="text" required />
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold text-outline uppercase tracking-widest px-1" for="contact-email">Your Email Address</label>
+                                <input id="contact-email" name="email"
+                                    class="w-full bg-surface-container-lowest border-none border-b-2 border-outline/20 focus:border-tertiary focus:ring-0 text-on-surface p-4 transition-all"
+                                    type="email" required />
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-outline uppercase tracking-widest px-1" for="contact-message">Message</label>
+                            <textarea id="contact-message" name="message"
+                                class="w-full bg-surface-container-lowest border-none border-b-2 border-outline/20 focus:border-tertiary focus:ring-0 text-on-surface p-4 transition-all resize-none"
+                                rows="4" required></textarea>
+                        </div>
+                        <button id="submit-btn"
+                            class="w-full md:w-auto bg-primary text-on-primary px-12 py-4 rounded-xl font-black uppercase tracking-widest hover:shadow-[0_0_20px_rgba(167,200,255,0.3)] transition-all flex items-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
+                            type="submit">
+                            <span id="submit-label">Send Transmission</span>
+                            <span id="submit-spinner" class="material-symbols-outlined text-sm hidden animate-spin">progress_activity</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-[#001c3a] w-full py-12 px-4 md:px-8">
+        <div class="flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6">
+            <div class="flex items-center gap-4">
+                <span class="text-lg font-bold text-[#0074d9]">W</span>
+                <span class="text-sm text-[#8b919e]">© 2025 Wassim Chouayakh</span>
+            </div>
+            <div class="flex gap-8">
+                <a class="text-[#8b919e] font-['Inter'] text-sm uppercase tracking-widest hover:text-[#3ce368] transition-colors opacity-80 hover:opacity-100"
+                    href="https://www.linkedin.com/in/wassim-chouayakh-174534178/">LinkedIn</a>
+                <a class="text-[#8b919e] font-['Inter'] text-sm uppercase tracking-widest hover:text-[#3ce368] transition-colors opacity-80 hover:opacity-100"
+                    href="https://github.com/king-wassim">GitHub</a>
+            </div>
+            <button
+                class="bg-surface-container-highest p-3 rounded-full text-tertiary hover:bg-tertiary hover:text-on-tertiary transition-all"
+                onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <span class="material-symbols-outlined" data-icon="expand_less">expand_less</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- R2: Hamburger menu script -->
+    <script>
+        (function () {
+            const btn = document.getElementById('hamburger-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('hamburger-icon');
+            const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+            function openMenu() {
+                menu.classList.remove('translate-x-full');
+                menu.classList.add('translate-x-0');
+                menu.setAttribute('aria-hidden', 'false');
+                btn.setAttribute('aria-expanded', 'true');
+                icon.textContent = 'close';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                menu.classList.remove('translate-x-0');
+                menu.classList.add('translate-x-full');
+                menu.setAttribute('aria-hidden', 'true');
+                btn.setAttribute('aria-expanded', 'false');
+                icon.textContent = 'menu';
+                document.body.style.overflow = '';
+            }
+
+            btn.addEventListener('click', function () {
+                const isOpen = btn.getAttribute('aria-expanded') === 'true';
+                isOpen ? closeMenu() : openMenu();
+            });
+
+            // Close on nav link click
+            navLinks.forEach(function (link) {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // Close on outside click (clicking the overlay backdrop)
+            menu.addEventListener('click', function (e) {
+                if (e.target === menu) closeMenu();
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
+                    closeMenu();
+                }
+            });
+        })();
+    </script>
+
+    <!-- R3: Async contact form -->
+    <script>
+        (function () {
+            var form = document.getElementById('contact-form');
+            var successEl = document.getElementById('form-success');
+            var errorEl = document.getElementById('form-error');
+            var submitBtn = document.getElementById('submit-btn');
+            var submitLabel = document.getElementById('submit-label');
+            var submitSpinner = document.getElementById('submit-spinner');
+
+            if (!form) return;
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                errorEl.classList.add('hidden');
+                submitBtn.disabled = true;
+                submitLabel.textContent = 'Sending…';
+                submitSpinner.classList.remove('hidden');
+
+                try {
+                    var data = new FormData(form);
+                    var res = await fetch('https://formspree.io/f/mykbjvzl', {
+                        method: 'POST',
+                        body: data,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (res.ok) {
+                        form.classList.add('hidden');
+                        successEl.classList.remove('hidden');
+                        successEl.classList.add('flex');
+                    } else {
+                        throw new Error('non-ok response');
+                    }
+                } catch (err) {
+                    errorEl.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                    submitLabel.textContent = 'Send Transmission';
+                    submitSpinner.classList.add('hidden');
+                }
+            });
+        })();
+    </script>

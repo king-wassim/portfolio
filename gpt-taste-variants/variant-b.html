@@ -1,0 +1,630 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wassim Chouayakh — Embedded & Software Engineer</title>
+  <meta name="description" content="Wassim Chouayakh — Engineering student at INSAT, embedded systems & software engineer specializing in STM32, CAN Bus, UDS, FreeRTOS." />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&f[]=jet-brains-mono@400,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cabinet Grotesk', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            paper: '#f4f3ee',
+            ink: '#0e0e0e',
+            'ink-2': '#2a2a2a',
+            muted: '#6b6b6b',
+            accent: '#3ce368',
+            'accent-dark': '#2bb350',
+            primary: '#0074d9',
+            'primary-hi': '#a7c8ff',
+            line: '#1a1a1a'
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    html, body { background: #f4f3ee; color: #0e0e0e; font-family: 'Cabinet Grotesk', sans-serif; }
+    body { overflow-x: hidden; max-width: 100vw; }
+    .grain { background-image: radial-gradient(rgba(14,14,14,0.04) 1px, transparent 1px); background-size: 4px 4px; }
+    .pill-img { display: inline-block; width: 4rem; height: 1.6rem; border-radius: 9999px; vertical-align: middle; margin: 0 0.3rem; background-size: cover; background-position: center; border: 2px solid #0e0e0e; }
+    .marquee { display: flex; gap: 4rem; white-space: nowrap; animation: marquee 35s linear infinite; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .nav-glass { backdrop-filter: blur(24px) saturate(140%); background: rgba(244,243,238,0.75); border: 1px solid rgba(14,14,14,0.08); }
+    .btn-ink { background: #0e0e0e; color: #f4f3ee; transition: all 0.5s cubic-bezier(0.2,0,0,1); }
+    .btn-ink:hover { background: #3ce368; color: #0e0e0e; }
+    .btn-outline { border: 1.5px solid #0e0e0e; color: #0e0e0e; transition: all 0.5s cubic-bezier(0.2,0,0,1); }
+    .btn-outline:hover { background: #0e0e0e; color: #f4f3ee; }
+    .accordion-panel { transition: flex-basis 0.7s cubic-bezier(0.2,0,0,1); }
+    .stack-card { will-change: transform; }
+    .pin-target { will-change: transform; }
+    .hover-lift { transition: transform 0.6s cubic-bezier(0.2,0,0,1); }
+    .hover-lift:hover { transform: translateY(-4px); }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f4f3ee; }
+    ::-webkit-scrollbar-thumb { background: #0e0e0e; border-radius: 4px; }
+    .label-mono { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.7rem; }
+  </style>
+</head>
+<body class="bg-paper text-ink">
+
+  <!-- FLOATING GLASS PILL NAV -->
+  <nav class="fixed top-6 left-6 right-6 md:left-1/2 md:right-auto md:-translate-x-1/2 md:w-[90%] md:max-w-3xl z-50 nav-glass rounded-full px-2 py-2 flex items-center justify-between">
+    <a href="#home" class="px-4 py-2 rounded-full font-extrabold text-lg">W.Chouayakh<span class="text-accent">.</span></a>
+    <div class="hidden md:flex items-center gap-1">
+      <a href="#about" class="px-3 py-1.5 text-sm hover:underline underline-offset-4 decoration-accent decoration-2">About</a>
+      <a href="#skills" class="px-3 py-1.5 text-sm hover:underline underline-offset-4 decoration-accent decoration-2">Skills</a>
+      <a href="#work" class="px-3 py-1.5 text-sm hover:underline underline-offset-4 decoration-accent decoration-2">Work</a>
+      <a href="#experience" class="px-3 py-1.5 text-sm hover:underline underline-offset-4 decoration-accent decoration-2">Experience</a>
+    </div>
+    <a href="https://github.com/king-wassim" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full bg-ink text-paper text-xs font-mono">GH ↗</a>
+    <button id="mobile-toggle" class="md:hidden p-2">☰</button>
+  </nav>
+
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-paper/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-6 text-3xl font-bold">
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#skills" class="mobile-link">Skills</a>
+    <a href="#work" class="mobile-link">Work</a>
+    <a href="#experience" class="mobile-link">Experience</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <main class="overflow-x-hidden w-full max-w-full">
+
+    <!-- HERO — ARTISTIC ASYMMETRY -->
+    <section id="home" class="relative min-h-screen pt-24 pb-12 px-6 md:px-12 grain">
+      <div class="max-w-7xl mx-auto relative">
+        <div class="grid md:grid-cols-12 gap-6 items-end min-h-[80vh]">
+          <!-- Left: text -->
+          <div class="md:col-span-7 relative z-20">
+            <div class="label-mono text-muted mb-6">/ Portfolio — 2026</div>
+            <h1 class="font-extrabold leading-[0.92] tracking-tight" style="font-size:clamp(2.75rem,6vw,5.5rem);">
+              Built for the <span class="inline-block"><span class="pill-img" style="background-image:url('../vecu_uds_project.png')"></span></span>machine<span class="text-accent">.</span>
+            </h1>
+            <p class="mt-10 max-w-xl text-lg text-muted leading-relaxed">
+              Wassim Chouayakh — embedded & software engineer at INSAT. STM32 firmware, CAN/UDS diagnostics, and the tools that turn code into behavior.
+            </p>
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="#work" class="btn-ink px-7 py-4 rounded-full font-bold">See the work →</a>
+              <a href="#contact" class="btn-outline px-7 py-4 rounded-full font-bold">Get in touch</a>
+            </div>
+          </div>
+          <!-- Right: asymmetric floating image -->
+          <div class="md:col-span-5 relative h-[60vh]">
+            <div class="absolute inset-0 md:-bottom-32 md:-right-12 rounded-3xl overflow-hidden bg-ink/5 ring-1 ring-ink/10 shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700">
+              <img src="image.jpg" alt="Wassim Chouayakh at work" class="w-full h-full object-cover grayscale-[30%] contrast-110" />
+              <div class="absolute bottom-4 left-4 right-4 bg-paper/90 backdrop-blur p-4 rounded-xl">
+                <div class="label-mono text-muted mb-1">Now</div>
+                <div class="font-bold text-sm">2nd year @ INSAT · Building UDS stacks on Linux vCAN</div>
+              </div>
+            </div>
+            <div class="absolute -top-4 -left-4 md:-left-8 w-20 h-20 rounded-full bg-accent flex items-center justify-center text-ink font-extrabold text-sm z-10 rotate-[-12deg]">
+              HIRE<br/>2026
+            </div>
+          </div>
+        </div>
+        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-ink/10 pt-8 font-mono text-sm">
+          <div><span class="block text-4xl font-extrabold mb-1" data-count="16">0</span><span class="text-muted">drivers shipped</span></div>
+          <div><span class="block text-4xl font-extrabold mb-1" data-count="8">0</span><span class="text-muted">projects</span></div>
+          <div><span class="block text-4xl font-extrabold mb-1" data-count="2">0</span><span class="text-muted">internships</span></div>
+          <div><span class="block text-4xl font-extrabold mb-1">∞</span><span class="text-muted">coffee consumed</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="py-8 border-y border-ink overflow-hidden bg-ink text-paper">
+      <div class="marquee font-extrabold text-2xl tracking-tight">
+        <span>STM32</span><span class="text-accent">✦</span>
+        <span>CAN BUS</span><span class="text-accent">✦</span>
+        <span>UDS / ISO-TP</span><span class="text-accent">✦</span>
+        <span>FreeRTOS</span><span class="text-accent">✦</span>
+        <span>Linux vCAN</span><span class="text-accent">✦</span>
+        <span>POSIX</span><span class="text-accent">✦</span>
+        <span>React + TypeScript</span><span class="text-accent">✦</span>
+        <span>Flutter</span><span class="text-accent">✦</span>
+        <span>STM32</span><span class="text-accent">✦</span>
+        <span>CAN BUS</span><span class="text-accent">✦</span>
+        <span>UDS / ISO-TP</span><span class="text-accent">✦</span>
+        <span>FreeRTOS</span><span class="text-accent">✦</span>
+        <span>Linux vCAN</span><span class="text-accent">✦</span>
+        <span>POSIX</span><span class="text-accent">✦</span>
+        <span>React + TypeScript</span><span class="text-accent">✦</span>
+        <span>Flutter</span><span class="text-accent">✦</span>
+      </div>
+    </section>
+
+    <!-- ABOUT — EDITORIAL SPLIT -->
+    <section id="about" class="py-32 md:py-48 px-6 md:px-12">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-12">
+        <div class="md:col-span-4">
+          <div class="label-mono text-muted mb-4">01 / Profile</div>
+          <h2 class="font-extrabold leading-[0.95]" style="font-size:clamp(2.5rem,4.5vw,4rem);">
+            Engineer who <br/>lives in <span class="italic font-medium">registers</span>.
+          </h2>
+        </div>
+        <div class="md:col-span-7 md:col-start-6 text-lg text-ink-2 leading-relaxed space-y-6">
+          <p>
+            I'm Wassim — 2nd-year engineering student at <span class="font-bold">INSAT</span>, Tunis. I work the seam between low-level C and high-level systems.
+          </p>
+          <p>
+            Lately that's meant <span class="bg-accent/30 px-1">automotive diagnostics</span>: ISO-TP framing, UDS service handling, AUTOSAR test compliance, NRC codes. The unglamorous work that makes cars actually start.
+          </p>
+          <p>
+            Before that — bare-metal STM32 drivers, FreeRTOS scheduling, multi-node CAN bus systems, and the automation tools (Python, Flutter) that keep engineering teams moving.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS — HORIZONTAL ACCORDION -->
+    <section id="skills" class="py-32 md:py-48 px-6 md:px-12 bg-ink text-paper">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-end justify-between mb-12 flex-wrap gap-4">
+          <div>
+            <div class="label-mono text-accent mb-4">02 / Capability</div>
+            <h2 class="font-extrabold leading-[0.95]" style="font-size:clamp(2.5rem,4.5vw,4rem);">
+              Hover. <br/>It expands.
+            </h2>
+          </div>
+          <p class="text-paper/60 max-w-md">Click any panel to expand it. Each one unpacks a category of things I work with daily.</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-3 h-[60vh] md:h-[70vh]">
+          <!-- Panel 1: Embedded -->
+          <div class="accordion-panel flex-1 hover:flex-[3] bg-accent rounded-3xl p-8 cursor-pointer overflow-hidden flex flex-col justify-between text-ink transition-all" onclick="this.parentElement.querySelectorAll('.accordion-panel').forEach(p=>p.classList.remove('ring-4')); this.classList.add('ring-4','ring-ink');">
+            <div class="flex justify-between items-start">
+              <span class="label-mono">Embedded</span>
+              <span class="font-mono text-2xl font-bold">01</span>
+            </div>
+            <div>
+              <h3 class="text-4xl font-extrabold mb-4 leading-tight">Firmware<br/>that ships.</h3>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">STM32 F1/F4</span>
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">HAL + Bare-Metal</span>
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">FreeRTOS</span>
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">DMA</span>
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">Interrupts</span>
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">Assembly</span>
+              </div>
+            </div>
+          </div>
+          <!-- Panel 2: Protocols -->
+          <div class="accordion-panel flex-1 bg-primary rounded-3xl p-8 cursor-pointer overflow-hidden flex flex-col justify-between text-paper transition-all" onclick="this.parentElement.querySelectorAll('.accordion-panel').forEach(p=>p.classList.remove('ring-4')); this.classList.add('ring-4','ring-ink');">
+            <div class="flex justify-between items-start">
+              <span class="label-mono">Protocols</span>
+              <span class="font-mono text-2xl font-bold">02</span>
+            </div>
+            <div>
+              <h3 class="text-4xl font-extrabold mb-4 leading-tight">Bus-level<br/>work.</h3>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">CAN Bus</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">UART</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">I2C</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">SPI</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">ISO-TP</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">UDS</span>
+              </div>
+            </div>
+          </div>
+          <!-- Panel 3: Web/Mobile -->
+          <div class="accordion-panel flex-1 bg-paper rounded-3xl p-8 cursor-pointer overflow-hidden flex flex-col justify-between text-ink transition-all" onclick="this.parentElement.querySelectorAll('.accordion-panel').forEach(p=>p.classList.remove('ring-4')); this.classList.add('ring-4','ring-ink');">
+            <div class="flex justify-between items-start">
+              <span class="label-mono">Web / Mobile</span>
+              <span class="font-mono text-2xl font-bold">03</span>
+            </div>
+            <div>
+              <h3 class="text-4xl font-extrabold mb-4 leading-tight">Apps for<br/>humans.</h3>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">React</span>
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">TypeScript</span>
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">NestJS</span>
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">Flutter</span>
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">PostgreSQL</span>
+                <span class="px-3 py-1 rounded-full bg-ink text-paper text-sm">Node.js</span>
+              </div>
+            </div>
+          </div>
+          <!-- Panel 4: Tools -->
+          <div class="accordion-panel flex-1 bg-ink-2 rounded-3xl p-8 cursor-pointer overflow-hidden flex flex-col justify-between text-paper transition-all" onclick="this.parentElement.querySelectorAll('.accordion-panel').forEach(p=>p.classList.remove('ring-4')); this.classList.add('ring-4','ring-accent');">
+            <div class="flex justify-between items-start">
+              <span class="label-mono">DevOps + Tools</span>
+              <span class="font-mono text-2xl font-bold">04</span>
+            </div>
+            <div>
+              <h3 class="text-4xl font-extrabold mb-4 leading-tight">The<br/>toolchain.</h3>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">Git</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">Docker</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">CMake</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">STM32CubeIDE</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">Keil</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">GDB</span>
+                <span class="px-3 py-1 rounded-full bg-paper text-ink text-sm">Python</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK — CARD STACKING -->
+    <section id="work" class="py-32 md:py-48 px-6 md:px-12 bg-paper">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-16">
+          <div class="label-mono text-muted mb-4">03 / Selected Work</div>
+          <h2 class="font-extrabold leading-[0.95] max-w-4xl" style="font-size:clamp(2.5rem,4.5vw,4rem);">
+            Eight projects. <br/><span class="italic font-medium">One scroll.</span>
+          </h2>
+          <p class="mt-6 text-muted max-w-xl">Each card pins to the top, then the next one slides over it. Scroll through to see the full body of work.</p>
+        </div>
+
+        <!-- Stacked cards container -->
+        <div class="relative">
+          <!-- Card 1 -->
+          <div class="stack-card sticky top-20 mb-8">
+            <article class="bg-ink text-paper rounded-3xl overflow-hidden shadow-2xl">
+              <div class="grid md:grid-cols-2">
+                <div class="bg-cover bg-center h-72 md:h-[500px]" style="background-image:url('../vecu_uds_project.png');"></div>
+                <div class="p-10 md:p-14 flex flex-col justify-center">
+                  <div class="label-mono text-accent mb-3">Automotive · 2026</div>
+                  <h3 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">VECU-UDS:<br/>Diagnostic Stack</h3>
+                  <p class="text-paper/70 leading-relaxed mb-6">Single-ECU diagnostic prototype over Linux vCAN. 5+ UDS services, ISO-TP layer in C, &lt;10ms end-to-end response. 12+ smoke tests, 90%+ critical-path coverage, full NRC handling.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">C</span>
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">SocketCAN</span>
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">UDS</span>
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">ISO-TP</span>
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">Linux</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Card 2 -->
+          <div class="stack-card sticky top-20 mb-8">
+            <article class="bg-accent text-ink rounded-3xl overflow-hidden shadow-2xl">
+              <div class="grid md:grid-cols-2">
+                <div class="bg-cover bg-center h-72 md:h-[500px]" style="background-image:url('../stm32_mini_projects.png');"></div>
+                <div class="p-10 md:p-14 flex flex-col justify-center">
+                  <div class="label-mono text-ink/60 mb-3">Embedded · 2025</div>
+                  <h3 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">STM32 Mini-<br/>Projects Archive</h3>
+                  <p class="text-ink/70 leading-relaxed mb-6">Multi-node STM32 system with I2C sensor acquisition and bare-metal CAN Bus. 4 concurrent FreeRTOS tasks (producer/consumer), &lt;5ms cycle times, &lt;1ms per-frame latency at 500kbps.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-ink text-paper text-xs font-mono">STM32 F4</span>
+                    <span class="px-3 py-1 rounded-full bg-ink text-paper text-xs font-mono">FreeRTOS</span>
+                    <span class="px-3 py-1 rounded-full bg-ink text-paper text-xs font-mono">CAN</span>
+                    <span class="px-3 py-1 rounded-full bg-ink text-paper text-xs font-mono">I2C</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Card 3 -->
+          <div class="stack-card sticky top-20 mb-8">
+            <article class="bg-primary text-paper rounded-3xl overflow-hidden shadow-2xl">
+              <div class="grid md:grid-cols-2">
+                <div class="bg-cover bg-center h-72 md:h-[500px]" style="background-image:url('../sightline_dashboard.png');"></div>
+                <div class="p-10 md:p-14 flex flex-col justify-center">
+                  <div class="label-mono text-accent mb-3">Web · 2025</div>
+                  <h3 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">SightLine<br/>Dashboard</h3>
+                  <p class="text-paper/70 leading-relaxed mb-6">Reactive analytics dashboard. Modern web stack with real-time data visualization and a clean ops-focused interface.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">React</span>
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">TypeScript</span>
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">NestJS</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Card 4 -->
+          <div class="stack-card sticky top-20 mb-8">
+            <article class="bg-paper text-ink border border-ink/10 rounded-3xl overflow-hidden shadow-2xl">
+              <div class="grid md:grid-cols-2">
+                <div class="bg-cover bg-center h-72 md:h-[500px]" style="background-image:url('../foodwise_dashboard.png');"></div>
+                <div class="p-10 md:p-14 flex flex-col justify-center">
+                  <div class="label-mono text-muted mb-3">Web · 2025</div>
+                  <h3 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">FoodWise<br/>Dashboard</h3>
+                  <p class="text-muted leading-relaxed mb-6">Nutrition intelligence platform. Tracking, scoring, and surfacing insights from food data with a clean consumer interface.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-ink text-paper text-xs font-mono">React</span>
+                    <span class="px-3 py-1 rounded-full bg-ink text-paper text-xs font-mono">Node.js</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Card 5 -->
+          <div class="stack-card sticky top-20 mb-8">
+            <article class="bg-ink-2 text-paper rounded-3xl overflow-hidden shadow-2xl">
+              <div class="grid md:grid-cols-2">
+                <div class="bg-cover bg-center h-72 md:h-[500px]" style="background-image:url('../hospital_dashboard.png');"></div>
+                <div class="p-10 md:p-14 flex flex-col justify-center">
+                  <div class="label-mono text-accent mb-3">Web · 2025</div>
+                  <h3 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Hospital<br/>Dashboard</h3>
+                  <p class="text-paper/70 leading-relaxed mb-6">Operational dashboard for healthcare workflows. Real-time data display and patient management interface.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">React</span>
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">PostgreSQL</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Card 6 -->
+          <div class="stack-card sticky top-20 mb-8">
+            <article class="bg-accent-dark text-paper rounded-3xl overflow-hidden shadow-2xl">
+              <div class="grid md:grid-cols-2">
+                <div class="bg-cover bg-center h-72 md:h-[500px]" style="background-image:url('../fajri_app.png');"></div>
+                <div class="p-10 md:p-14 flex flex-col justify-center">
+                  <div class="label-mono text-accent mb-3">Mobile · 2024</div>
+                  <h3 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Fajri App</h3>
+                  <p class="text-paper/70 leading-relaxed mb-6">Mobile companion for daily rituals. Cross-platform with thoughtful UX and clean state management.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-ink text-paper text-xs font-mono">Flutter</span>
+                    <span class="px-3 py-1 rounded-full bg-ink text-paper text-xs font-mono">Dart</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Card 7 -->
+          <div class="stack-card sticky top-20 mb-8">
+            <article class="bg-paper text-ink border border-ink/10 rounded-3xl overflow-hidden shadow-2xl">
+              <div class="grid md:grid-cols-2">
+                <div class="bg-cover bg-center h-72 md:h-[500px]" style="background-image:url('../antenna_simulation_dashboard.png');"></div>
+                <div class="p-10 md:p-14 flex flex-col justify-center">
+                  <div class="label-mono text-muted mb-3">Simulation · 2024</div>
+                  <h3 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Antenna Array<br/>Simulation</h3>
+                  <p class="text-muted leading-relaxed mb-6">4-antenna configuration dashboard. Visualization and tuning of RF parameters for beam-pattern experiments.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-ink text-paper text-xs font-mono">Python</span>
+                    <span class="px-3 py-1 rounded-full bg-ink text-paper text-xs font-mono">NumPy</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Card 8 -->
+          <div class="stack-card sticky top-20 mb-8">
+            <article class="bg-ink text-paper rounded-3xl overflow-hidden shadow-2xl">
+              <div class="grid md:grid-cols-2">
+                <div class="bg-cover bg-center h-72 md:h-[500px]" style="background-image:url('../KPIT_image.png');"></div>
+                <div class="p-10 md:p-14 flex flex-col justify-center">
+                  <div class="label-mono text-accent mb-3">Automotive · 2025</div>
+                  <h3 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">KPIT Python<br/>File Analyzer</h3>
+                  <p class="text-paper/70 leading-relaxed mb-6">AUTOSAR test-case compliance automation at KPIT. Cut manual review by ~40%, hours of report processing to minutes. Shipped to 10+ embedded engineers.</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">Python</span>
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">AUTOSAR</span>
+                    <span class="px-3 py-1 rounded-full bg-paper/10 text-xs font-mono">Flutter</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="py-32 md:py-48 px-6 md:px-12 bg-ink text-paper">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-12 gap-12 mb-16">
+          <div class="md:col-span-5">
+            <div class="label-mono text-accent mb-4">04 / In industry</div>
+            <h2 class="font-extrabold leading-[0.95]" style="font-size:clamp(2.5rem,4.5vw,4rem);">
+              Two internships. <br/>Real codebases.
+            </h2>
+          </div>
+        </div>
+        <div class="space-y-1">
+          <div class="hover-lift border-l-4 border-accent bg-paper/5 p-8 md:p-12">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <div class="label-mono text-accent mb-1">Jul — Aug 2025</div>
+                <div class="text-sm text-paper/50">Sfax, TN</div>
+              </div>
+              <div class="md:col-span-3">
+                <div class="text-sm text-paper/50 mb-1">KPIT Technologies · Automotive Embedded</div>
+                <h3 class="text-3xl font-extrabold mb-4">Software & Validation Engineer Intern</h3>
+                <ul class="text-paper/70 space-y-2 leading-relaxed">
+                  <li>— Streamlined AUTOSAR test-case compliance with a Python automation script — cut manual review time by ~40%.</li>
+                  <li>— Shipped a cross-platform Flutter + Python desktop tool adopted by 10+ embedded engineers.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="hover-lift border-l-4 border-primary-hi bg-paper/5 p-8 md:p-12">
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="md:col-span-1">
+                <div class="label-mono text-primary-hi mb-1">Jun — Jul 2025</div>
+                <div class="text-sm text-paper/50">Sfax, TN</div>
+              </div>
+              <div class="md:col-span-3">
+                <div class="text-sm text-paper/50 mb-1">Intellitech</div>
+                <h3 class="text-3xl font-extrabold mb-4">AI Engineer Intern</h3>
+                <ul class="text-paper/70 space-y-2 leading-relaxed">
+                  <li>— Deployed a RAG-based chatbot — ~30% better query relevance, ~50% less search time over 100+ internal docs.</li>
+                  <li>— Built LLM-driven semantic retrieval pipeline.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-32 md:py-48 px-6 md:px-12 bg-paper">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16">
+          <div>
+            <div class="label-mono text-muted mb-4">05 / Contact</div>
+            <h2 class="font-extrabold leading-[0.95] mb-8" style="font-size:clamp(2.5rem,5vw,5rem);">
+              Let's <span class="italic font-medium">talk.</span>
+            </h2>
+            <p class="text-muted leading-relaxed mb-8 max-w-md">
+              Open to summer 2026 internships, embedded systems roles, and collaboration on interesting hardware-adjacent problems.
+            </p>
+            <div class="space-y-3 font-mono text-sm">
+              <a href="mailto:wassimchouayakh73@gmail.com" class="block hover:text-accent transition-colors">→ wassimchouayakh73@gmail.com</a>
+              <a href="tel:+21692901311" class="block hover:text-accent transition-colors">→ +216 92 901 311</a>
+              <a href="https://github.com/king-wassim" target="_blank" rel="noopener noreferrer" class="block hover:text-accent transition-colors">→ github.com/king-wassim ↗</a>
+            </div>
+            <div class="mt-12 flex gap-2 flex-wrap">
+              <span class="px-4 py-2 rounded-full border border-ink/20 text-sm font-mono">FR — Native</span>
+              <span class="px-4 py-2 rounded-full border border-ink/20 text-sm font-mono">AR — Native</span>
+              <span class="px-4 py-2 rounded-full border border-ink/20 text-sm font-mono">EN — Fluent</span>
+              <span class="px-4 py-2 rounded-full border border-ink/20 text-sm font-mono">ES — Beginner</span>
+            </div>
+          </div>
+          <form id="contact-form" action="https://formspree.io/f/mykbjvzl" method="POST" class="space-y-6">
+            <div>
+              <label class="block label-mono mb-2">Name</label>
+              <input type="text" name="name" required class="w-full bg-transparent border-b-2 border-ink/20 focus:border-accent py-3 outline-none transition-colors text-ink" />
+            </div>
+            <div>
+              <label class="block label-mono mb-2">Email</label>
+              <input type="email" name="email" required class="w-full bg-transparent border-b-2 border-ink/20 focus:border-accent py-3 outline-none transition-colors text-ink" />
+            </div>
+            <div>
+              <label class="block label-mono mb-2">Message</label>
+              <textarea name="message" required rows="4" class="w-full bg-transparent border-b-2 border-ink/20 focus:border-accent py-3 outline-none transition-colors text-ink resize-none"></textarea>
+            </div>
+            <button type="submit" id="submit-btn" class="btn-ink w-full px-8 py-4 rounded-full font-bold">
+              Send message →
+            </button>
+            <div id="form-status" class="text-sm font-mono"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 px-6 md:px-12 border-t border-ink/10">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div class="font-bold text-xl">W.Chouayakh<span class="text-accent">.</span></div>
+        <div class="font-mono text-xs text-muted">© 2026 · Built at INSAT · Tunis, TN</div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero stats counter
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count);
+      gsap.fromTo(el, { textContent: 0 }, {
+        textContent: target, duration: 2, ease: 'power2.out', delay: 0.5,
+        snap: { textContent: 1 },
+        scrollTrigger: { trigger: el, start: 'top 85%' }
+      });
+    });
+
+    // Heading reveals
+    gsap.utils.toArray('section h2').forEach(h => {
+      gsap.from(h, {
+        y: 50, opacity: 0, duration: 1, ease: 'power3.out',
+        scrollTrigger: { trigger: h, start: 'top 80%' }
+      });
+    });
+
+    // Accordion panel expand on hover (CSS does most, JS adds ring)
+    document.querySelectorAll('.accordion-panel').forEach(panel => {
+      panel.addEventListener('mouseenter', () => {
+        document.querySelectorAll('.accordion-panel').forEach(p => p.style.flex = '1');
+        panel.style.flex = '3';
+      });
+    });
+    document.querySelector('.accordion-panel').parentElement.addEventListener('mouseleave', () => {
+      document.querySelectorAll('.accordion-panel').forEach(p => p.style.flex = '1');
+    });
+
+    // Card stacking scroll — each card fades and shifts as next arrives
+    gsap.utils.toArray('.stack-card').forEach((card, i) => {
+      if (i === gsap.utils.toArray('.stack-card').length - 1) return;
+      gsap.to(card.querySelector('article'), {
+        scale: 0.92, opacity: 0.85, ease: 'none',
+        scrollTrigger: {
+          trigger: gsap.utils.toArray('.stack-card')[i + 1],
+          start: 'top bottom',
+          end: 'top top',
+          scrub: true
+        }
+      });
+    });
+
+    // Hero image rotation back on scroll
+    gsap.to('#home .relative.h-\\[60vh\\] > div:first-child', {
+      rotate: 0, ease: 'none',
+      scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    // Mobile menu
+    const toggle = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+        document.body.style.overflow = menu.classList.contains('flex') ? 'hidden' : '';
+      });
+      menu.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          menu.classList.remove('flex');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // Formspree
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    const btn = document.getElementById('submit-btn');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST', body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            status.textContent = '✓ Message sent. Talk soon.';
+            status.className = 'text-sm font-mono text-accent-dark';
+            form.reset();
+          } else {
+            throw new Error();
+          }
+        } catch {
+          status.textContent = '! Something went wrong. Email me directly.';
+          status.className = 'text-sm font-mono text-red-600';
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Send message →';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
